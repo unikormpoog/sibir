@@ -1,6 +1,5 @@
-// This file contains placeholder data that you'll be replacing with real data in the Data Fetching chapter:
 // https://nextjs.org/learn/dashboard-app/fetching-data
-const users = [
+const users1 = [
   {
     id: "410544b2-4001-4271-9855-fec4b6a6442a",
     name: "User",
@@ -11,7 +10,7 @@ const users = [
 
 const profs = [
   {
-    id: "3958dc9e-737f-4377-85e9-fec4b6a6442a",
+    id: "3981dc9e-737f-4377-85e9-fec4b6a6442a",
     name: "Иван Иванов",
     department: "Кафедра математики",
     position: "Профессор",
@@ -23,7 +22,7 @@ const profs = [
     start_date: "2010-09-01",
   },
   {
-    id: "3958dc9e-742f-4377-85e9-fec4b6a6442a",
+    id: "3658dc9e-742f-4377-85e9-fec4b6a6442a",
     name: "Мария Петрова",
     department: "Кафедра физики",
     position: "Доцент",
@@ -35,7 +34,7 @@ const profs = [
     start_date: "2012-09-01",
   },
   {
-    id: "3958dc9e-712f-4377-85e9-fec4b6a6442a",
+    id: "9534dc9e-712f-4377-85e9-fec4b6a6442a",
     name: "Сергей Смирнов",
     department: "Кафедра химии",
     position: "Ассистент",
@@ -45,6 +44,126 @@ const profs = [
     tabel_id: 1003,
     wage: 70000,
     start_date: "2015-09-01",
+  },
+  {
+    id: "2a7b2e99-8a7c-4e3d-a3f1-d7b1b8e2a6c1",
+    name: "Мария Петрова",
+    department: "Кафедра химии",
+    position: "Доцент",
+    degree: "Кандидат наук",
+    address: "ул. Гагарина, д. 3, кв. 12",
+    phone: 79161234568,
+    tabel_id: 1002,
+    wage: 90000,
+    start_date: "2012-01-15",
+  },
+  {
+    id: "b8d9a5f0-6d71-4b85-a7eb-9b5c5eb2e8e3",
+    name: "Алексей Смирнов",
+    department: "Кафедра физики",
+    position: "Ассистент",
+    degree: "Магистр",
+    address: "ул. Советская, д. 20, кв. 8",
+    phone: 79161234569,
+    tabel_id: 1003,
+    wage: 70000,
+    start_date: "2014-06-01",
+  },
+  {
+    id: "d1b6f7a1-1a2d-4e7c-b5d7-0c2a3c0b6f3a",
+    name: "Ольга Сидорова",
+    department: "Кафедра биологии",
+    position: "Профессор",
+    degree: "Доктор наук",
+    address: "ул. Победы, д. 15, кв. 7",
+    phone: 79161234570,
+    tabel_id: 1004,
+    wage: 125000,
+    start_date: "2008-03-01",
+  },
+  {
+    id: "7e4e5e88-65f8-42e7-9e0e-9c3b4f2c7a6d",
+    name: "Сергей Николаев",
+    department: "Кафедра информатики",
+    position: "Старший преподаватель",
+    degree: "Кандидат наук",
+    address: "ул. Московская, д. 25, кв. 10",
+    phone: 79161234571,
+    tabel_id: 1005,
+    wage: 100000,
+    start_date: "2015-09-01",
+  },
+  {
+    id: "f3b1a9d7-48c8-4b8d-9d3e-8b3a9d6e8b4a",
+    name: "Елена Фёдорова",
+    department: "Кафедра экономики",
+    position: "Доцент",
+    degree: "Кандидат наук",
+    address: "ул. Лесная, д. 9, кв. 4",
+    phone: 79161234572,
+    tabel_id: 1006,
+    wage: 95000,
+    start_date: "2013-11-01",
+  },
+  {
+    id: "3d2e8a99-1c4d-4b3b-a3f3-c7b1e7c8a7f9",
+    name: "Дмитрий Кузнецов",
+    department: "Кафедра философии",
+    position: "Ассистент",
+    degree: "Магистр",
+    address: "ул. Лермонтова, д. 18, кв. 6",
+    phone: 79161234573,
+    tabel_id: 1007,
+    wage: 75000,
+    start_date: "2016-01-10",
+  },
+  {
+    id: "a1c7d3e8-4b1e-4c8b-a3e9-8b3c7b8e9d3f",
+    name: "Татьяна Васильева",
+    department: "Кафедра психологии",
+    position: "Профессор",
+    degree: "Доктор наук",
+    address: "ул. Красная, д. 22, кв. 11",
+    phone: 79161234574,
+    tabel_id: 1008,
+    wage: 130000,
+    start_date: "2009-04-20",
+  },
+  {
+    id: "c8d7e6f5-2c1a-4e8b-9c7b-8e2a9d7b3f6a",
+    name: "Владимир Попов",
+    department: "Кафедра истории",
+    position: "Доцент",
+    degree: "Кандидат наук",
+    address: "ул. Пушкина, д. 5, кв. 3",
+    phone: 79161234575,
+    tabel_id: 1009,
+    wage: 92000,
+    start_date: "2011-10-01",
+  },
+  {
+    id: "4e7b3d8c-2c8d-4b1e-8a7b-3c8d7e9b6f1a",
+    name: "Александра Павлова",
+    department: "Кафедра социологии",
+    position: "Старший преподаватель",
+    degree: "Кандидат наук",
+    address: "ул. Спортивная, д. 17, кв. 9",
+    phone: 79161234576,
+    tabel_id: 1010,
+    wage: 98000,
+    start_date: "2012-05-01",
+  },
+  {
+    id: "6d4e7a3b-8e9c-4b7b-a8d7-9b2a3c6d7e1f",
+    name: "Наталья Григорьева",
+    department: "Кафедра лингвистики",
+    position: "Профессор",
+    degree: "Доктор наук",
+    address: "ул. Центральная, д. 14, кв. 8",
+    phone: 79161234577,
+    tabel_id: 1011,
+    wage: 122000,
+    start_date: "2007-08-15",
   },
 ];
 
@@ -72,7 +191,7 @@ const deps = [
   },
 ];
 
-const paychecks = [
+const paychecks2 = [
   {
     prof_id: profs[0].id,
     professor: profs[0].name,
@@ -84,12 +203,11 @@ const paychecks = [
     payment_month: "2024-05",
     full_time_hours: 160,
     rate: 1200,
-    get amount() {
-      return this.hours_worked * this.rate;
-    },
-    prof_id: profs[0].id,
-    professor: profs[0].name,
-    department: profs[0].department,
+  },
+  {
+    prof_id: profs[1].id,
+    professor: profs[1].name,
+    department: profs[1].department,
     date: "2022-06-10",
     status: "в обработке",
     amount: 17785,
@@ -97,12 +215,11 @@ const paychecks = [
     payment_month: "2024-06",
     full_time_hours: 170,
     rate: 1300,
-    get amount() {
-      return this.hours_worked * this.rate;
-    },
-    prof_id: profs[0].id,
-    professor: profs[0].name,
-    department: profs[0].department,
+  },
+  {
+    prof_id: profs[2].id,
+    professor: profs[2].name,
+    department: profs[2].department,
     date: "2022-05-06",
     status: "в обработке",
     amount: 19760,
@@ -110,9 +227,6 @@ const paychecks = [
     payment_month: "2024-05",
     full_time_hours: 120,
     rate: 1500,
-    get amount() {
-      return this.hours_worked * this.rate;
-    },
   },
 ];
 
@@ -132,8 +246,8 @@ const paychecks = [
 // ];
 
 module.exports = {
-  users,
+  users1,
   profs,
   deps,
-  paychecks,
+  paychecks2,
 };
