@@ -30,3 +30,24 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const formatCurrency = (wage: number) => {
+  return (wage / 1).toLocaleString("ru-RU", {
+    style: "currency",
+    currency: "RUB",
+  });
+};
+
+export const formatDateToLocal = (
+  dateStr: string,
+  locale: string = "ru-RU"
+) => {
+  const date = new Date(dateStr);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  };
+  const formatter = new Intl.DateTimeFormat(locale, options);
+  return formatter.format(date);
+};

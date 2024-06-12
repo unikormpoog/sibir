@@ -3,19 +3,22 @@ import {
   ClockIcon,
   UserGroupIcon,
   InboxIcon,
+  WalletIcon,
+  AcademicCapIcon,
 } from "@heroicons/react/24/outline";
 import { lusitana } from "@/app/ui/fonts";
 import { fetchCardData } from "@/app/lib/data";
+import Link from "next/link";
 
 const iconMap = {
   paid: BanknotesIcon,
-  profs: UserGroupIcon,
+  profs: AcademicCapIcon,
   pending: ClockIcon,
-  paychecks: InboxIcon,
+  paychecks: WalletIcon,
 };
 
 export default async function CardWrapper() {
-    // const {
+  // const {
   //   totalPaisPaychecks,
   //   totalPendingPaychecks,
   //   numberOfPaychecks,
@@ -26,19 +29,22 @@ export default async function CardWrapper() {
     numberOfPaychecks,
     totalPaisPaychecks,
     totalPendingPaychecks,
+    totalDepsCount,
   } = await fetchCardData();
   return (
     <>
       {/* NOTE: comment in this code when you get to this point in the course */}
 
-      <Card title="Paid" value={totalPaisPaychecks} type="paid" />
-      <Card title="Pending" value={totalPendingPaychecks} type="pending" />
+      <Card title="Выплачено" value={totalPaisPaychecks} type="paid" />
       <Card
-        title="Total Paychecks"
-        value={numberOfPaychecks}
-        type="paychecks"
+        title="Ожидает выплаты"
+        value={totalPendingPaychecks}
+        type="pending"
       />
-      <Card title="Total Customers" value={numberOfProfs} type="profs" />
+      <Card title="Кафедр всего:" value={totalDepsCount} type="paychecks" />
+      <Link href={"/dashboard/profs"}>
+        <Card title="Преподавателей" value={numberOfProfs} type="profs" />
+      </Link>
     </>
   );
 }

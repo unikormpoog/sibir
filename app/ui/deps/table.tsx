@@ -1,121 +1,118 @@
 import Image from "next/image";
-import { UpdateProf, DeleteProf } from "@/app/ui/deps/buttons";
+import { lusitana } from "@/app/ui/fonts";
+import Search from "@/app/ui/search";
+import { DepartmentNew } from "@/app/lib/definitions";
 
-// import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredProfs } from "@/app/lib/data";
-
-export default async function InvoicesTable({
-  query,
-  currentPage,
+export default async function CustomersTable({
+  departments,
 }: {
-  query: string;
-  currentPage: number;
+  departments: DepartmentNew[];
 }) {
-  const profs = await fetchFilteredProfs(query, currentPage);
-
   return (
-    <div className="mt-6 flow-root">
-      <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-          <div className="md:hidden">
-            {profs?.map((prof) => (
-              <div
-                key={prof.id}
-                className="mb-2 w-full rounded-md bg-white p-4"
-              >
-                <div className="flex items-center justify-between border-b pb-4">
-                  <div>
-                    <div className="mb-2 flex items-center">
-                      {/* <Image
-                        src={invoice.image_url}
-                        className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${invoice.name}'s profile picture`}
-                      /> */}
-                      <p>{prof.name}</p>
+    <div className="w-full">
+      <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
+        Customers
+      </h1>
+      <Search placeholder="Search customers..." />
+      <div className="mt-6 flow-root">
+        <div className="overflow-x-auto">
+          <div className="inline-block min-w-full align-middle">
+            <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
+              <div className="md:hidden">
+                {departments?.map((department) => (
+                  <div
+                    key={department.id}
+                    className="mb-2 w-full rounded-md bg-white p-4"
+                  >
+                    <div className="flex items-center justify-between border-b pb-4">
+                      <div>
+                        <div className="mb-2 flex items-center">
+                          <div className="flex items-center gap-3">
+                            {/* <Image
+                              src={department.department}
+                              className="rounded-full"
+                              alt="1"
+                              width={28}
+                              height={28}
+                            /> */}
+                            <p>{department.department}</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-500">
+                          {department.head}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-500">{prof.department}</p>
+                    <div className="flex w-full items-center justify-between border-b py-5">
+                      <div className="flex w-1/2 flex-col">
+                        <p className="text-xs">Адресс</p>
+                        <p className="font-medium">{department.address}</p>
+                      </div>
+                      <div className="flex w-1/2 flex-col">
+                        <p className="text-xs">Телефон</p>
+                        <p className="font-medium">{department.phone}</p>
+                      </div>
+                    </div>
+                    <div className="pt-4 text-sm">
+                      {/* <p>{department.total_invoices} invoices</p> */}
+                    </div>
                   </div>
-                </div>
-                <div className="flex w-full items-center justify-between pt-4">
-                  {/* <div>
-                    <p className="text-xl font-medium">
-                      {formatCurrency(prof.wage)}
-                    </p>
-                    <p>{formatDateToLocal(prof.start_date)}</p>
-                  </div> */}
-                  <div className="flex justify-end gap-2">
-                    <UpdateProf id={prof.id} />
-                    <DeleteProf id={prof.id} />
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+              <table className="hidden min-w-full rounded-md text-gray-900 md:table">
+                <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
+                  <tr>
+                    <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                      Название
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Глава кафедры
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Адресс
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Телефон
+                    </th>
+                    <th scope="col" className="px-4 py-5 font-medium">
+                      Total Paid
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody className="divide-y divide-gray-200 text-gray-900">
+                  {departments.map((department) => (
+                    <tr key={department.id} className="group">
+                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
+                        <div className="flex items-center gap-3">
+                          {/* <Image
+                            src={department.image_url}
+                            className="rounded-full"
+                            alt={`${department.name}'s profile picture`}
+                            width={28}
+                            height={28}
+                          /> */}
+                          <p>{department.department}</p>
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {department.head}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {department.address}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {department.phone}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
+                        {/* {department.total_paid} */}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal">
-              <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                  Профессор
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Кафедра
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Оклад
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Начал работу с
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Статус зарплаты
-                </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
-                  <span className="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {profs?.map((prof) => (
-                <tr
-                  key={prof.id}
-                  className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
-                >
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex items-center gap-3">
-                      {/* <Image
-                        src={prof.image_url}
-                        className="rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${prof.name}'s profile picture`}
-                      /> */}
-                      <p>{prof.name}</p>
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {prof.department}
-                  </td>
-                  {/* <td className="whitespace-nowrap px-3 py-3">
-                    {formatCurrency(prof.wage)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(prof.start_date)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    <InvoiceStatus status={prof.status} />
-                  </td> */}
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex justify-end gap-3">
-                      <UpdateProf id={prof.id} />
-                      <DeleteProf id={prof.id} />
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
