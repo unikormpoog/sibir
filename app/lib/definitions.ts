@@ -65,7 +65,7 @@ export type UserNew = {
 export type ProfessorNew = {
   id: string;
   name: string;
-  department_id: string;
+  department: string;
   position: string;
   degree: string;
   address: string;
@@ -77,8 +77,9 @@ export type ProfessorNew = {
 
 export type DepartmentNew = {
   id: string;
-  department: string;
+  department_name: string;
   head: string;
+  head_name: string;
   address: string;
   phone: number;
 };

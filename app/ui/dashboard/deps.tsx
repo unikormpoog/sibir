@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { lusitana } from "@/app/ui/fonts";
 import { Department } from "@/app/lib/definitions";
-import { fetchDeps } from "@/app/lib/data";
+import { fetchDeps, newFetchDeps } from "@/app/lib/data";
 
 export default async function Deps() {
   const deps = await fetchDeps();
