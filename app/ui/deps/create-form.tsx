@@ -19,7 +19,7 @@ export default function Form_1({
   profs,
 }: {
   deps: Department[];
-  profs: Professor[];
+  profs: Professor;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
