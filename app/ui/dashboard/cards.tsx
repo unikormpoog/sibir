@@ -35,13 +35,21 @@ export default async function CardWrapper() {
     <>
       {/* NOTE: comment in this code when you get to this point in the course */}
 
-      <Card title="Выплачено" value={totalPaisPaychecks} type="paid" />
-      <Card
-        title="Ожидает выплаты"
-        value={totalPendingPaychecks}
-        type="pending"
-      />
-      <Card title="Кафедр всего:" value={totalDepsCount} type="paychecks" />
+      <Link href={"/dashboard/paychecks"}>
+        <Card title="Выплачено" value={totalPaisPaychecks} type="paid" />
+      </Link>
+
+      <Link href={"/dashboard/paychecks"}>
+        <Card
+          title="Ожидает выплаты"
+          value={totalPendingPaychecks}
+          type="pending"
+        />
+      </Link>
+      <Link href={"/dashboard/deps"}>
+        <Card title="Кафедр всего:" value={totalDepsCount} type="paychecks" />
+      </Link>
+
       <Link href={"/dashboard/profs"}>
         <Card title="Преподавателей" value={numberOfProfs} type="profs" />
       </Link>

@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { UpdateProf, DeleteProf } from "@/app/ui/profs/buttons";
+import { UpdateProf, DeleteProf, FullProf } from "@/app/ui/profs/buttons";
 
 // import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredProfs } from "@/app/lib/data";
+import { fetchFilteredProfs, fetchPaysById } from "@/app/lib/data";
 import { formatCurrency, formatDateToLocal } from "@/app/lib/utils";
 import PaycheckStatus from "../paychecks/status";
+import ProfessorDetails from "@/app/dashboard/profs/[id]/[id]";
+import Link from "next/link";
 
 export default async function InvoicesTable({
   query,
@@ -50,6 +52,7 @@ export default async function InvoicesTable({
                     <p>{formatDateToLocal(professor.start_date)}</p>
                   </div>
                   <div className="flex justify-end gap-2">
+                    <FullProf id={professor.id} />
                     <UpdateProf id={professor.id} />
                     <DeleteProf id={professor.id} />
                   </div>
@@ -73,11 +76,12 @@ export default async function InvoicesTable({
                   Начал работу с
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Статус зарплаты
+                  Ученая степень
                 </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
+
+                {/* <th scope="col" className="relative py-3 pl-6 pr-3">
                   <span className="sr-only">Edit</span>
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -108,10 +112,19 @@ export default async function InvoicesTable({
                     {formatDateToLocal(professor.start_date)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {/* <PaycheckStatus status={prof.status} /> */}
+                    {professor.degree}
+                    {/* <PaycheckStatus status={pay.status} /> */}
                   </td>
+
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex justify-end gap-3">
+                    <div className="flex gap-3">
+                      {/* <Link
+                        href={`profs/${professor.id}`}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View Details
+                      </Link> */}
+                      <FullProf id={professor.id} />
                       <UpdateProf id={professor.id} />
                       <DeleteProf id={professor.id} />
                     </div>

@@ -1,6 +1,6 @@
 // Loading animation
 const shimmer =
-  'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
+  "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
 
 export function CardSkeleton() {
   return (
@@ -180,19 +180,19 @@ export function InvoicesTableSkeleton() {
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                  Customer
+                  ........
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Email
+                  ........
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Amount
+                  ........
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Date
+                  ........
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
-                  Status
+                  ........
                 </th>
                 <th
                   scope="col"

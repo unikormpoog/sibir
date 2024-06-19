@@ -12,6 +12,7 @@ import {
   RevenueChartSkeleton,
 } from "@/app/ui/skeletons";
 import CardWrapper from "@/app/ui/dashboard/cards";
+import Link from "next/link";
 
 export default async function Page() {
   const deps = await fetchDeps();
@@ -38,6 +39,7 @@ export default async function Page() {
             <Deps />
           </Suspense>
           <Suspense fallback={<InvoiceSkeleton />}>
+            
             <LatestProfs1 />
           </Suspense>
         </div>

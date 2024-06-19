@@ -6,6 +6,10 @@ import {
   ClockIcon,
   CurrencyDollarIcon,
   UserCircleIcon,
+  BuildingLibraryIcon,
+  UserIcon,
+  MapPinIcon,
+  PhoneIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Button } from "@/app/ui/button";
@@ -41,7 +45,7 @@ export default function EditDepsForm({
                 defaultValue={deps.department_name}
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <BuildingLibraryIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
@@ -56,19 +60,19 @@ export default function EditDepsForm({
                 name="head"
                 className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 defaultValue={deps.head}
-                size={isOpen ? 5 : 1}
-                // style={{ overflowY: "auto" }}
+                // size={isOpen ? 5 : 1}
+                // // style={{ overflowY: "auto" }}
 
-                onFocus={() => setIsOpen(true)} // Открыть список при фокусе
-                onBlur={() => setIsOpen(false)} // Закрыть список при потере фокуса
-                style={{
-                  maxHeight: isOpen ? "10rem" : "auto",
-                  overflowY: isOpen ? "auto" : "hidden",
-                }} // Установить прокрутку только в открытом состоянии
+                // onFocus={() => setIsOpen(true)} // Открыть список при фокусе
+                // onBlur={() => setIsOpen(false)} // Закрыть список при потере фокуса
+                // style={{
+                //   maxHeight: isOpen ? "10rem" : "auto",
+                //   overflowY: isOpen ? "auto" : "hidden",
+                // }} // Установить прокрутку только в открытом состоянии
               >
-                {/* <option value="" disabled>
-                  Выберите профессора
-                </option> */}
+                <option value="" disabled>
+                  Глава на данный момент: {deps.head}
+                </option>
                 {profs.map((prof) => (
                   <option key={prof.id} value={prof.id}>
                     {prof.name} ({prof.degree})
@@ -76,7 +80,7 @@ export default function EditDepsForm({
                 ))}
               </select>
 
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <UserIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
@@ -94,7 +98,7 @@ export default function EditDepsForm({
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <MapPinIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
@@ -112,7 +116,7 @@ export default function EditDepsForm({
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <PhoneIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>

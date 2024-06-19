@@ -29,7 +29,7 @@ export type Professor2 = {
   tabel_id: number;
   wage: number;
   start_date: string;
-  // status: string;
+ 
 };
 
 export type Department = {
@@ -52,7 +52,18 @@ export type Paycheck = {
   full_time_hours: number;
   rate: number;
 };
-
+export type Paycheck_2 = {
+  prof_id: string;
+  professor: string;
+  department: string;
+  date: string;
+  status: "в обработке" | "выплачено";
+  amount: number;
+  hours_worked: number;
+  payment_month: string;
+  full_time_hours: number;
+  rate: number;
+};
 //test
 
 export type UserNew = {
@@ -85,14 +96,12 @@ export type DepartmentNew = {
 };
 
 export type PaycheckNew = {
-  prof_id: string;
-  professor: string;
-  department_id: string;
-  date: Date;
+  count(count: any): unknown;
+  id: string;
+  name: string;
+  department: string;
   status: "в обработке" | "выплачено";
+  date_of_paycheck: string;
   amount: number;
-  hours_worked: number;
   payment_month: string;
-  full_time_hours: number;
-  rate: number;
 };

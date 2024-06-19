@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 import {
   DepartmentNew,
+  PaycheckNew,
   Professor,
   Professor2,
   ProfessorNew,
@@ -15,11 +16,11 @@ export async function fetchCardData() {
     console.log("Fetching revenue data...");
     await new Promise((resolve) => setTimeout(resolve, 10));
     const profsCountPromise = sql`SELECT COUNT(*) FROM profs`;
-    const paycheckCountPromise = sql`SELECT COUNT(*) FROM paychecks2`;
+    const paycheckCountPromise = sql`SELECT COUNT(*) FROM professors_payment`;
     const paycheckStatusPromise = sql`SELECT
   SUM(CASE WHEN status = 'выплачено' THEN amount ELSE 0 END) AS "выплачено",
   SUM(CASE WHEN status = 'в обработке' THEN amount ELSE 0 END) AS "обрабатывается"
-  FROM paychecks2`;
+  FROM professors_payment`;
     const depsCount = sql`SELECT COUNT(*) FROM departments`;
     const data = await Promise.all([
       profsCountPromise,
@@ -215,6 +216,36 @@ export async function fetchProfsById(id: string) {
   }
 }
 
+//
+export async function fetchProfsByIdPrecise(id: string) {
+  noStore();
+  try {
+    const data = await sql<Professor>`
+  SELECT  
+    profs.id,
+    profs.name,
+    profs.department,
+    profs.position,
+    profs.degree,
+    profs.address,
+    profs.phone,
+    profs.tabel_id,
+    profs.wage,
+    profs.start_date
+  FROM profs
+  WHERE profs.id = ${id};
+  `;
+    console.log(sql);
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch prof.");
+  }
+}
+
+//
 export async function fetchDepsById(id: string) {
   noStore();
   try {
@@ -298,5 +329,98 @@ export async function fetchFilteredDeps(query: string, currentPage: number) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch invoices.");
+  }
+}
+
+export async function fetchFilteredPay(query: string, currentPage: number) {
+  noStore();
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE_1;
+  try {
+    await sql`CREATE EXTENSION IF NOT EXISTS citext;`;
+    const lowerQuery = query.toLowerCase();
+
+    const data = await sql<PaycheckNew>`SELECT
+    professors_payment.id,
+    professors_payment.name,
+    professors_payment.department,
+    professors_payment.status,
+    professors_payment.amount,
+    professors_payment.payment_month,
+    professors_payment.date_of_paycheck
+
+  FROM professors_payment
+
+  WHERE
+   LOWER(professors_payment.date_of_paycheck) LIKE ${`%${lowerQuery}%`} OR
+    LOWER(professors_payment.payment_month) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.name) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.department) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.status) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.amount::text) LIKE ${`%${lowerQuery}%`} 
+  
+ 
+  LIMIT ${ITEMS_PER_PAGE_1} OFFSET ${offset}
+  `;
+    // console.log("SQL Query:", data);
+
+    return data.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
+  }
+}
+
+export async function fetchPaysById(id: string) {
+  noStore();
+  try {
+    const data = await sql<PaycheckNew>`
+  SELECT  
+     professors_payment.id,
+    professors_payment.name,
+    professors_payment.department,
+    professors_payment.status,
+    professors_payment.date_of_paycheck,
+    professors_payment.amount,
+    professors_payment.payment_month
+
+  FROM professors_payment
+  WHERE professors_payment.id = ${id};
+  `;
+    const pay = data.rows.map((pay) => ({
+      ...pay,
+      // If needed, add any data transformations here
+    }));
+
+    console.log(pay);
+    return pay[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch prof.");
+  }
+}
+export async function fetchPaysPages(query: string) {
+  noStore();
+
+  try {
+    // await sql`CREATE EXTENSION IF NOT EXISTS citext;`;
+    const lowerQuery = query.toLowerCase();
+
+    const count = await sql<PaycheckNew>`SELECT COUNT(*)
+    FROM professors_payment
+    WHERE
+      LOWER(professors_payment.name) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.department) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.status) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.amount::text) LIKE ${`%${lowerQuery}%`} OR
+      LOWER(professors_payment.date_of_paycheck::text) LIKE ${`%${lowerQuery}%`}
+    
+  `;
+    const totalPages = Math.ceil(
+      Number(count.rows[0].count) / ITEMS_PER_PAGE_1
+    );
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch deps.");
   }
 }

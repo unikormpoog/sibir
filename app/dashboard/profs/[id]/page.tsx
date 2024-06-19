@@ -1,4 +1,5 @@
 import Form from "@/app/ui/profs/edit-form";
+import FullInvoiceForm from "@/app/ui/profs/full-form";
 import Breadcrumbs from "@/app/ui/profs/breadcrumbs";
 import { fetchProfs, fetchProfsById } from "@/app/lib/data";
 import { notFound } from "next/navigation";
@@ -25,39 +26,15 @@ export default async function Page({ params }: { params: { id: string } }) {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: "Профессоры", href: "/dashboard/profs" },
+          { label: "Преподаватели", href: "/dashboard/profs" },
           {
-            label: "Edit Invoice",
-            href: `/dashboard/profs/${id}/edit`,
+            label: "Полная запись",
+            href: `/dashboard/profs/${id}`,
             active: true,
           },
         ]}
       />
-      <Form profs={plainProfs} />
+      <FullInvoiceForm profs={plainProfs} />
     </main>
   );
 }
-
-// export default async function Page({ params }: { params: { id: string } }) {
-//   const id = params.id;
-//   const profs = await fetchProfsById(id);
-//   if (!profs) {
-//     notFound();
-//   }
-//   return (
-//     <main>
-//       <Breadcrumbs
-//         breadcrumbs={[
-//           { label: "Invoices", href: "/dashboard/profs" },
-//           {
-//             label: "Edit Invoice",
-//             href: `/dashboard/profs/${id}/edit`,
-//             active: true,
-//           },
-//         ]}
-//       />
-//       <Form profs={profs} />
-//     </main>
-//   );
-// }
-// Экспортируем тип
